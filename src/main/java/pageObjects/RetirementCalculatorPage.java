@@ -71,6 +71,12 @@ public class RetirementCalculatorPage {
 	@FindBy(id = "result-message")
 	private WebElement resultMessage;
 	
+	@FindBy(id = "calculator-input-alert-desc")
+	private WebElement errorMsg;
+	
+	@FindBy(id = "invalid-current-age-error")
+	private WebElement currentAgeErrorMsg;
+	
 	public RetirementCalculatorPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		webUtil = new SeleniumUtility(driver);
@@ -156,4 +162,14 @@ public class RetirementCalculatorPage {
 		webUtil.waitUntilVisible(this.resultMessage);
 		return this.resultMessage.getText();
 	}
+	
+	public String getErrorMessage() {
+		webUtil.waitUntilVisible(this.errorMsg);
+		return this.errorMsg.getText();
+	}
+	
+	public String getCurrentAgeErrorMsg() {
+		return this.currentAgeErrorMsg.getText();
+	}
+
 }
